@@ -1,0 +1,16 @@
+def safely_require(file)
+  require_relative file
+rescue LoadError
+  # ignore
+end
+
+
+safely_require 'story'
+safely_require 'menu'
+safely_require 'player'
+safely_require 'building'
+safely_require 'unit'
+safely_require 'footman'
+safely_require 'barracks'
+safely_require 'peasant'
+safely_require 'game'
