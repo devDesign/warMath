@@ -4,7 +4,8 @@ rescue LoadError
   # ignore
 end 
 
-
+safely_require 'mine_math'
+safely_require 'chop_math'
 safely_require 'building'
 safely_require 'story'
 safely_require 'farms'
@@ -17,5 +18,5 @@ safely_require 'unit'
 safely_require 'footman'
 safely_require 'barracks'
 safely_require 'peasant'
-
+safely_require 'unit_menu'
 safely_require 'game'

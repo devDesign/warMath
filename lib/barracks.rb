@@ -4,26 +4,19 @@ class Barracks < Building
     @name = "Barracks"
   end
   def can_train_footman?
-    $player.gold >= 400 && $player.food >= 2  
+  $player.gold >= 500 && ($player.food - $player.demand >= 2)
   end
   
   def train_footman
     if can_train_footman?
-    $player.gold -= 60
-    $player.food -= 2
-    Footman.new
+    $player.gold -= 500
+    $player.footmen.push(Footman.new)
+    elsif $player.gold < 500
+      puts "you need more gold"
+    else 
+      puts "you need more farms"
     end
+    display_menu
   end
 
-  def can_train_peasant?
-    $player.gold >= 400 && $player.food >= 2
-  end
-
-  def train_peasant
-    if can_train_footman?
-      $player.gold -= 400
-      $player.food -= 1
-      Peasant.new
-    end
-  end
 end

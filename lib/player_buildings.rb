@@ -1,12 +1,12 @@
 class PlayerBuildings
-  attr_accessor :player_buildings
+  attr_accessor :buildings_display
   def initialize(player_buildings)
-    @player_buildings = player_buildings
+    @buildings_display = player_buildings
   end
 
-  def display_arr
+  def display_arr(all_buildings)
     buildings_arr = []
-    @player_buildings.each do |n|
+    all_buildings.each do |n|
       if n.class == Array
         buildings_arr.push(n[0].name)
       else
@@ -20,6 +20,7 @@ class PlayerBuildings
     farm_count = player_buildings[2].size
     return farm_count
   end
+
 end
 
 

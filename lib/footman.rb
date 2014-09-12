@@ -1,7 +1,8 @@
 
 class Footman < Unit
-  attr_accessor :health_points,:attack_power
+  attr_accessor :health_points,:attack_power,:name
   def initialize
+    @name = "Footman"
     @health_points = 60
     @attack_power = 10
   end

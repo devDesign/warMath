@@ -1,17 +1,21 @@
 class Player
-  attr_accessor :gold, :food, :lumber, :buildings, :units
-  def initialize
+  attr_accessor :gold, :food, :lumber, :buildings, :peasants, :demand
+  def initialize(peasants,footmen,buildings)
     @gold= 100
     @lumber = 50
-    @buildings = PlayerBuildings.new([Town.new,Barracks.new,[Farm.new,Farm.new,Farm.new]])
-    @units = PlayerUnits.new([[Footman.new,Footman.new],[Peasant.new,Peasant.new,Peasant.new]])
+    @farms = buildings
+    @peasants = peasants
+    @footmen = footmen
     @food = 1
   end 
 
+  def food_demand_total
+    food_demand = @peasants.size + @footmen.size * 2
+  end
+
   def update_resources
-    @food = (@buildings.food_supply_total(@buildings.player_buildings)) * 4
-    @demand = @units.food_demand_total(@units.player_units)
+    @food = (@farms.size) * 4
+    @demand = food_demand_total
     puts "Total gold: #{@gold}/10000 lumber: #{@lumber}/5000  food: #{@demand} /#{@food}"
-    
   end
 end

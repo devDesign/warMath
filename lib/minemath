@@ -1,0 +1,4 @@
+class MineMath
+  def random_generator
+    return rand(1..$player.peasants.size)
+  end
