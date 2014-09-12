@@ -1,0 +1,4 @@
+$names = ["Constance", "Edgar","Loveday","Fysher","Raulin", "Bell","Blanche","Hamond","Isolda" ,"Mayne","Talbot","Stephen","Anderson","Hyll","Payne","Pratt","Reginald","Whyte","Simon","Coterel","William","Savage","Joanna","Bardolf","Oliver", "Verney", "Cecily", "Lovell","Gilbert", "Coke","Nicolas", "Clarke","Knighton","David", "Kent","Morys", "Atlee", "Edmund", "Manston", "Symond", "Beauchamp", "Isabel", "Adams","John", "Forde","Sarah", "Savill","Lewis","Dering","Ivo", "Wille"]
+$footman_greeting = ["Awaiting orders.","Your command?","Your orders?","Yes, sire?","Yes?","My lord?","Yes.","Yes, my lord.","As you wish.","At once, sire.","At your service."]
+$peasant_greeting = ["Ready to work!","Yes, milord?","What is it?","More work?","What?"]
+$peasant_confirm = ["Right-o.","Yes, milord.","All right.","Off I go, then!"]    

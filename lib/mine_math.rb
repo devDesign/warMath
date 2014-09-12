@@ -16,9 +16,10 @@ class MineMath
     puts "#{random_number_1} + #{random_number_2} = "
     @answer = gets.chomp.to_i
     if @answer == correct_answer
-      puts "+#{10*$player.peasants.size} gold"
       $player.gold += $player.peasants.size * 10
+      $grinding = true
     else
+      $grinding = false
       puts "WRONG"
     end
   

@@ -1,8 +1,6 @@
-
-require_relative 'helper'
 class ChopMath
   def initialize
-  
+  @@death = -1
   end
   def random_generator
     return rand(1..$player.peasants.size)
@@ -16,10 +14,14 @@ class ChopMath
     puts "#{random_number_1} - #{random_number_2} = "
     @answer = gets.chomp.to_i
     if @answer == correct_answer
-      puts "+#{5*$player.peasants.size} lumber"
+      $grinding_lumber = true
       $player.lumber += $player.peasants.size * 10
     else
-      puts "WRONG"
+      $grinding_lumber = false
+      unless $player.peasants.size == 1
+        $player.peasants.delete_at($player.peasants.length-1) 
+        $lost_peasant = true
+      end
     end
   
   end

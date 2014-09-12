@@ -1,10 +1,11 @@
-  require_relative 'helper'
+require_relative 'helper'
 class Game
-  attr_accessor :town_hall, :minemath
+  attr_accessor :level, :barracks, :town_hall
   def initialize
     @level = 0
     @turn = 0
     @town_hall = Town.new
+    @barracks = Barracks.new
   end
   
   def build_farm
@@ -18,8 +19,10 @@ class Game
       puts "you need 500 gold and 250 lumber"
     end
   end
-
 end
+$lost_peasant = false
+$grinding_lumber =false
+$grinding = false
 $minemath = MineMath.new
 $chopmath = ChopMath.new
 $game = Game.new

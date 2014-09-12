@@ -16,7 +16,6 @@ class Barracks < Building
     else 
       puts "you need more farms"
     end
-    display_menu
   end
 
 end

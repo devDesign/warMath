@@ -1,7 +1,7 @@
 class Player
-  attr_accessor :gold, :food, :lumber, :buildings, :peasants, :demand
+  attr_accessor :gold, :food, :lumber, :buildings, :peasants, :demand, :footmen, :farms
   def initialize(peasants,footmen,buildings)
-    @gold= 100
+    @gold= 500
     @lumber = 50
     @farms = buildings
     @peasants = peasants

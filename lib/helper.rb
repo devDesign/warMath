@@ -1,22 +1,16 @@
-def safely_require(file)
-  require_relative file
-rescue LoadError
-  # ignore
-end 
-
-safely_require 'mine_math'
-safely_require 'chop_math'
-safely_require 'building'
-safely_require 'story'
-safely_require 'farms'
-safely_require 'menu'
-safely_require 'player'
-safely_require 'player_buildings'
-safely_require 'player_units'
-safely_require 'townhall'
-safely_require 'unit'
-safely_require 'footman'
-safely_require 'barracks'
-safely_require 'peasant'
-safely_require 'unit_menu'
-safely_require 'game'
+require_relative 'building'
+require_relative 'mine_math'
+require_relative 'chop_math'
+require_relative 'barracks'
+require_relative 'story'
+require_relative 'farms'
+require_relative 'menu'
+require_relative 'player'
+require_relative 'player_buildings'
+require_relative 'player_units'
+require_relative 'townhall'
+require_relative 'unit'
+require_relative 'footman'
+require_relative 'peasant'
+require_relative 'unit_menu'
+require_relative 'names'
