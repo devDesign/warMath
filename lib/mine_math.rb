@@ -20,7 +20,10 @@ class MineMath
       $grinding = true
     else
       $grinding = false
-      puts "WRONG"
+      unless $player.peasants.size == 1
+        $player.peasants.delete_at($player.peasants.length-1) 
+        $lost_peasant = true
+      end
     end
   
   end
