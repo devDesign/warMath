@@ -14,3 +14,7 @@ require_relative 'footman'
 require_relative 'peasant'
 require_relative 'unit_menu'
 require_relative 'names'
+require_relative 'save'
+require_relative 'load'
+
+require 'colorize'

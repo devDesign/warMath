@@ -17,7 +17,7 @@ class Player
   def update_resources
     @food = (@farms.size) * 4
     @demand = food_demand_total
-    puts "Total gold: #{@gold} lumber: #{@lumber}  food: #{@demand} /#{@food}"
+    puts "Total gold: #{@gold} lumber: #{@lumber}  food: #{@demand} /#{@food}  peasants: #{@peasants.length}  footmen: #{@footmen.length}"
   end
 
   def add_remove_party(user_input)

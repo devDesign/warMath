@@ -19,6 +19,8 @@ class Menu
     puts "*********"
     puts "1: Buildings - Train Units"
     puts "2: Units     - Control Units"
+    puts "7: Load      - Load Game"
+    puts "9: Save      - Save Game"
     @@user_selection = gets.chomp.to_i
     puts
     case @@user_selection
@@ -26,6 +28,14 @@ class Menu
       display_buildings
     when 2 
       display_units
+    when 7
+      Load.load_game
+      $player.update_resources
+      display_menu      
+    when 9
+      Save.save_game
+      $player.update_resources
+      display_menu
     else
       display_menu
     end
