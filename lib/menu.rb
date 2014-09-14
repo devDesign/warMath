@@ -136,36 +136,13 @@ class Menu
     puts
     puts "Peasants"
     puts "********"
-    puts "1: Mine for gold"
-    puts "2: Chop wood"
-    puts "3: Build farms"
-    puts "0: BACK"
     puts "You have #{$player.peasants.size} peasants under your command"
-    puts "you lost a loyal peasant in a math acident.. RIP #{$names.sample}" if $lost_peasant
-    puts "your #{$player.peasants.size} peasants mined +#{$player.peasants.size * 10} gold " if $grinding
-    puts "your #{$player.peasants.size} peasants harvested +#{5*$player.peasants.size} lumber" if $grinding_lumber
-    puts "Peasants: '#{$player.peasants[0].greeting.sample}'"
-    $lost_peasant = false
-    $game.update_resources
-    @@user_selection = gets.chomp.to_i
-    puts
-    case @@user_selection
-    when 1 
-      $grinding_lumber = false
-      $minemath.question
-    when 2
-      $grinding = false
-      $chopmath.question
-    when 3
-      $grinding_lumber = false
-      $grinding = false
-      $game.build_farm
-    else
-      $grinding = false
-      $grinding_lumber = false
-      display_units
+    $player.peasants.each_with_index do |peasant,index|
+      puts "#{index+1}: #{peasant.government_name} HP:#{peasant.health_points} XP:#{peasant.xp}"
     end
-    display_peasants
+      $game.update_resources
+      @@user_selection = gets.chomp.to_i
+    display_menu
   end
 
   def display_footmen
@@ -233,7 +210,7 @@ class Menu
   def quest(user_selection)
     case user_selection
     when 1 
-      $quest.elwynn_forest
+      $questmath.the_question
     when 2 
       $quest.westfall
     when 3 

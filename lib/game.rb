@@ -28,6 +28,11 @@ class Game
 
   def update_resources
     $player.build_queue
+    puts "you lost a loyal peasant in a math acident.. RIP #{$rip}" if $lost_peasant
+    puts "your #{$player.peasants.size} peasants mined +#{$player.peasants.size * 10} gold " if $grinding
+    puts "your #{$player.peasants.size} peasants harvested +#{5*$player.peasants.size} lumber" if $grinding_lumber
+    puts "Peasants: '#{$player.peasants[0].greeting.sample}'"
+    $lost_peasant = false
     puts
     $player.food = ($player.farms.size) * 4
     $player.demand = $player.food_demand_total
@@ -42,6 +47,7 @@ $grinding_lumber =false
 $grinding = false
 $minemath = MineMath.new
 $chopmath = ChopMath.new
+$questmath = QuestMath.new
 $game = Game.new
 $player = Player.new([Peasant.new,Peasant.new,Peasant.new],[Footman.new,Footman.new],[Farm.new,Farm.new,Farm.new])
 

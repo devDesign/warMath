@@ -1,5 +1,5 @@
 class Footman < Unit
-  attr_accessor :xp,:health_points,:attack_power,:name, :government_name, :kills, :age, :kids, :in_party
+  attr_accessor :strike,:xp,:health_points,:attack_power,:name, :government_name, :kills, :age, :kids, :in_party, :target, :trained, :training
   def initialize
     @name = "Footman"
     @kills = 0
@@ -11,10 +11,17 @@ class Footman < Unit
     @xp = rand(1..100)
     @government_name = $names.sample
     @in_party = false
+    @target = $game.days + 5
+    @trained = false
+    $game.barracks.queue == true ? @training = false : @training = true
+  end
+
+  def strike
+    @attack_power + (@xp / 100)
   end
 
   def attack!(enemy)
-    enemy.damage(@attack_power)
+    enemy.damage(@strike)
   end
 
 end

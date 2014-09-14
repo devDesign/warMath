@@ -1,13 +1,14 @@
 class Player
-  attr_accessor :gold, :food, :lumber, :buildings, :peasants, :demand, :footmen, :farms, :party, :unbuilt_farms, :training_peasants
+  attr_accessor :gold, :food, :lumber, :buildings, :peasants, :training_footmen, :demand, :footmen, :farms, :party, :unbuilt_farms, :training_peasants
   def initialize(peasants,footmen,farms)
-    @gold= 500
-    @lumber = 250
+    @gold= 5000
+    @lumber = 2500
     @unbuilt_farms = []
     @farms = farms
     @peasants = peasants
     @training_peasants = []
     @footmen = footmen
+    @training_footmen = []
     @food = 1
     @party = []
   end 
@@ -43,6 +44,23 @@ class Player
         peasant.training = true
       end
     end
+    @training_footmen.each do |footman|
+      if footman.target <= $game.days && footman.training == true && footman.trained == false
+        puts "new footman : 'Ready for action.'"
+        footman.trained = true
+        $game.barracks.queue = false
+        @footmen.push(footman)
+        build_queue
+      elsif footman.trained == false && footman.training == true
+        $game.barracks.queue = true
+        puts "training footman #{footman.government_name}.... days left: #{footman.days_left}"
+      elsif $game.barracks.queue == false && footman.trained == false
+        $game.barracks.queue = true
+        footman.target = $game.days + 5
+        footman.training = true
+      end
+    end
+
   end
 
   def add_remove_party(user_input)

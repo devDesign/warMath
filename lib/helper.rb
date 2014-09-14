@@ -14,6 +14,9 @@ require_relative 'footman'
 require_relative 'peasant'
 require_relative 'unit_menu'
 require_relative 'names'
+require_relative 'quest_math'
+require_relative 'sheep'
+
 =begin
 require_relative 'save'
 require_relative 'load'
