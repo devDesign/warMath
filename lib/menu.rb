@@ -5,35 +5,57 @@ class Menu
   @@user_selection = 0
   def initialize
     puts puts
-    puts "warMath"
-    puts "*******"
+    puts 
   end
 
   def display_menu
-    puts "Main Menu"
+    puts "warMath"
     puts "*********"
-    puts "1: Buildings - Train Units"
-    puts "2: Units     - Control Units"
-    puts "7: Load      - Load Game"
-    puts "9: Save      - Save Game"
-    @@user_selection = gets.chomp.to_i
+    puts "1: mineGold      MATH: +"
+    puts "2: mineLumber    MATH: -"
+    puts "3: trainPeasant  GOLD:100"
+    puts "4: trainFootman  GOLD:500"
+    puts "5: buildFarm     GOLD:500 LUMBER:250"
+    puts "6: units"
+    puts "7: buildings"
+    puts "8: Load    --    Load Game"
+    puts "9: Save    --    Save Game"
+    $game.update_resources
+    @@user_selection = gets.chomp
     puts
     case @@user_selection
-    when 1
-      display_buildings
-    when 2 
+    when "+" , "1" , "="
+      $grinding_lumber = false
+      $minemath.question
+    when "-" , "2"
+      $grinding = false
+      $chopmath.question
+    when "3"
+      $grinding_lumber = false
+      $grinding = false
+      $game.town_hall.train_peasant 
+    when "4"
+      $grinding_lumber = false
+      $grinding = false
+      $game.barracks.train_footman
+    when "5" 
+      $game.build_farm
+    when "6"
       display_units
-    when 7
+    when "7"
+      display_buildings
+    when "8"
       Load.load_game
       $game.update_resources
       display_menu      
-    when 9
+    when "9"
       Save.save_game
       $game.update_resources
       display_menu
     else
       display_menu
     end
+    display_menu
   end
 
   def display_buildings
