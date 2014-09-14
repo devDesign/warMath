@@ -5,13 +5,8 @@ class Menu
   @@user_selection = 0
   def initialize
     puts puts
-    puts "WarMath III"
-    puts "***********"
-    puts "MISSION:"
-    puts "Gather 10,000 gold, 5,000 lumber, train 20 footmen and kill all orcs"
-    puts
-    puts "The orcs are lurking in the forest"
-    puts    
+    puts "warMath"
+    puts "*******"
   end
 
   def display_menu
@@ -30,11 +25,11 @@ class Menu
       display_units
     when 7
       Load.load_game
-      $player.update_resources
+      $game.update_resources
       display_menu      
     when 9
       Save.save_game
-      $player.update_resources
+      $game.update_resources
       display_menu
     else
       display_menu
@@ -42,11 +37,13 @@ class Menu
   end
 
   def display_buildings
+    puts
     puts "Buildings"
     puts "*********"
     puts "1: Town Hall"
     puts "2: Barracks"
     puts "0: BACK"
+    $game.update_resources
     @@user_selection = gets.chomp.to_i
     puts
     case @@user_selection
@@ -60,12 +57,11 @@ class Menu
   end 
   
   def display_town_hall
-    puts
     puts "Town Hall"
     puts "*********"
-    $player.update_resources
     puts "1: Train Peasants - 100 gold"
     puts "0: BACK"
+    $game.update_resources
     @@user_selection = gets.chomp.to_i
     puts
     case @@user_selection
@@ -78,12 +74,11 @@ class Menu
   end
     
   def display_barracks
-    puts
     puts "Barracks"
     puts "********"
-    $player.update_resources
     puts "1: Train Footmen - 500 gold"
     puts "0: BACK"
+    $game.update_resources
     @@user_selection = gets.chomp.to_i
     puts
     case @@user_selection
@@ -102,6 +97,7 @@ class Menu
     puts "1: Peasants"
     puts "2: Footmen"
     puts "0: BACK"
+    $game.update_resources
     @@user_selection = gets.chomp.to_i
     puts
     case @@user_selection 
@@ -116,8 +112,6 @@ class Menu
   
   def display_peasants
     puts
-    $player.update_resources
-    puts
     puts "Peasants"
     puts "********"
     puts "1: Mine for gold"
@@ -130,6 +124,7 @@ class Menu
     puts "your #{$player.peasants.size} peasants harvested +#{5*$player.peasants.size} lumber" if $grinding_lumber
     puts "Peasants: '#{$player.peasants[0].greeting.sample}'"
     $lost_peasant = false
+    $game.update_resources
     @@user_selection = gets.chomp.to_i
     puts
     case @@user_selection
@@ -160,6 +155,7 @@ class Menu
     puts "3: Quick Create Party"
     puts "4: Send Party on Quest"
     puts "0: Back"
+    $game.update_resources
     @@user_selection = gets.chomp.to_i
     case @@user_selection
     when 1
@@ -190,6 +186,8 @@ class Menu
       end
     end
     $player.party.inspect
+    $game.update_resources
+
     gets
     display_footmen
   end
@@ -203,6 +201,7 @@ class Menu
       puts "1: Send your #{$player.party.size} warriors to the Elwynn Forest."
       puts "2: Send your #{$player.party.size} warriors to the coast of Westfall."
       puts "3: Send your #{$player.party.size} warriors to the mountains of Dun Morogh."
+      $game.update_resources
       quest(gets.chomp.to_i)
     else
       puts "you havent created a party, try again."
@@ -231,6 +230,7 @@ class Menu
       puts "#{index+1}: #{footman.government_name} HP:#{footman.health_points} XP:#{footman.xp}"
     end
     puts "select your warrior"
+    $game.update_resources
     display_footman(gets.chomp.to_i,false)
   end
     
@@ -242,6 +242,7 @@ class Menu
     $player.footmen.each_with_index do |footman,index|
       puts "#{index+1}: #{footman.government_name} HP:#{footman.health_points} XP:#{footman.xp}"
     end
+    $game.update_resources
     display_footman(gets.chomp.to_i,true)
   end
 
@@ -261,6 +262,7 @@ class Menu
     puts "add to party? y/n" if party_or_reserves && footman.in_party == false && $player.party.size < 9
     puts "remove from party y/n" unless party_or_reserves
     puts "your party is full." if $player.party.size > 9
+    $game.update_resources
     add_remove_party(gets.chomp, footman, party_or_reserves) 
   end
 

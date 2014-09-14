@@ -25,6 +25,6 @@ class MineMath
         $lost_peasant = true
       end
     end
-  
+  $game.days += 1
   end
 end
