@@ -16,6 +16,7 @@ require_relative 'unit_menu'
 require_relative 'names'
 require_relative 'quest_math'
 require_relative 'sheep'
+require_relative 'orc'
 
 =begin
 require_relative 'save'

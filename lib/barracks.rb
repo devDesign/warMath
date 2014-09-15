@@ -11,11 +11,12 @@ class Barracks < Building
   def train_footman
     if can_train_footman?
     $player.gold -= 500
+    $game.announcer = "-500 GOLD"
     $player.training_footmen.push(Footman.new)
     elsif $player.gold < 500
-      puts "you need more gold"
+      $game.announcer = "you need more gold"
     else 
-      puts "you need more farms"
+      $game.announcer = "you need more farms"
     end
   end
 

@@ -13,12 +13,12 @@ class Town < Building
   def train_peasant
     if can_train_peasant?
       $player.gold -= 100
-      puts "Peasant will be ready in 21 days"
+      $game.announcer = "-100 GOLD"
       $player.training_peasants.push(Peasant.new)
     elsif $player.gold < 100
-      puts "you need more gold"
+      $game.announcer = "you need more gold"
     else 
-      puts "you need more farms"
+      $game.announcer = "you need more farms"
     end
   end
   

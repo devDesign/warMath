@@ -20,10 +20,14 @@ class Menu
     puts "7: buildings"
     puts "8: Load    --    Load Game"
     puts "9: Save    --    Save Game"
+    puts "0: ATTACK"
     $game.update_resources
     @@user_selection = gets.chomp
     puts
     case @@user_selection
+    when "0"
+      quick_create
+      $questmath.the_question
     when "+" , "1" , "="
       $grinding_lumber = false
       $minemath.question
@@ -184,11 +188,6 @@ class Menu
         puts "added #{footman.government_name} to party"
       end
     end
-    $player.party.inspect
-    $game.update_resources
-
-    gets
-    display_footmen
   end
 
 
