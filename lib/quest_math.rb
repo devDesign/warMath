@@ -1,7 +1,7 @@
 class QuestMath
   attr_accessor :target, :attack_enemy
   def initialize
-    @enemies = [Grunt.new,Grunt.new]  
+    @enemies = []
     @ambushed = false
     @ambush = true
     @target = 99999
@@ -14,7 +14,9 @@ class QuestMath
   end
 
   def enemy_generator
-    @enemies
+    rand(1..8).times do |n|
+      @enemies.push(Grunt.new)
+    end
   end
 
   def encounters
@@ -42,9 +44,18 @@ class QuestMath
       end
     end
     if total_dead == total_enemies
+      @player_won = true
       @battle_over = true
-    else
-      @battle_over = false
+    end
+    total_party_dead = 0
+    $player.party.each do |footman|
+      if footman.is_dead? == true
+        total_party_dead += 1
+      end
+    end
+    if total_party_dead == $player.party.size
+      @battle_over = true
+      @player_won = false
     end
   end
 
@@ -58,10 +69,33 @@ class QuestMath
       battle_ground("==========")
       puts "Ready?"
       attack_ambush_enemy(gets.chomp.to_i)
+    elsif @battle_over == true && @player_won == true
+      $player.footmen.each_with_index do |footman,index|
+        if footman.is_dead?
+          $player.footmen.delete_at(index)
+          the_question
+        else
+          footman.health_points += rand(1..footman.xp)
+          $game.days += 5
+          you_win
+        end
+      end 
     else
-      $game.days += 5
-      you_win
+      you_lose
     end
+  end
+
+  def you_lose
+    $game.announcer = "you lose the battle"
+    $player.footmen.each_with_index do |footman,index|
+      if footman.is_dead?
+        $game.announcer += " RIP #{footman.government_name}"
+        $game.days += 5
+        $player.footmen.delete_at(index)
+        you_lose
+      end
+    end
+    @battle_over = false
   end
 
   def you_win
@@ -90,7 +124,7 @@ class QuestMath
     answer = gets.chomp.to_i
     if answer == @correct_answer
       $player.party.each do |footman|
-        footman.xp += rand(0..88)
+        footman.xp += rand(0..22)
         @enemies.each do |enemy|
           if enemy.is_dead? == false
             puts footman.government_name+": "+footman.battle_cry

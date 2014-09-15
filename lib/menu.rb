@@ -26,7 +26,10 @@ class Menu
     puts
     case @@user_selection
     when "0"
+      $grinding_lumber = false
+      $grinding = false
       quick_create
+      $questmath.enemy_generator
       $questmath.the_question
     when "+" , "1" , "="
       $grinding_lumber = false
