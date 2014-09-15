@@ -18,9 +18,9 @@ require_relative 'quest_math'
 require_relative 'sheep'
 require_relative 'orc'
 
-=begin
+
 require_relative 'save'
 require_relative 'load'
-=end
+
 
 require 'colorize'

@@ -14,8 +14,10 @@ class QuestMath
   end
 
   def enemy_generator
-    rand(1..8).times do |n|
-      @enemies.push(Grunt.new)
+    if @enemies == []
+      rand(1..8).times do |n|
+        @enemies.push(Grunt.new)
+      end
     end
   end
 
@@ -75,11 +77,10 @@ class QuestMath
           $player.footmen.delete_at(index)
           the_question
         else
-          footman.health_points += rand(1..footman.xp)
-          $game.days += 5
-          you_win
+        footman.health_points += rand(1..60)
         end
-      end 
+      end
+      you_win
     else
       you_lose
     end
@@ -99,12 +100,19 @@ class QuestMath
   end
 
   def you_win
+    @enemies.each_with_index do |enemy,index|
+      if enemy.is_dead?
+        @enemies.delete_at(index)
+        you_win
+      end
+    end
     $game.announcer = "you have won the battle"
     lumber = rand(1..10)* @enemies.size
     gold = rand(1..50) * @enemies.size
     $game.announcer += " +#{gold} GOLD +#{lumber} LUMBER"
     $player.gold += gold
     $player.lumber += lumber
+    $game.days += 5
     @battle_over = false
   end
 
