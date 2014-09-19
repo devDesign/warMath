@@ -11,7 +11,7 @@ class Footman < Unit
     @xp = rand(1..100)
     @government_name = $names.sample
     @in_party = false
-    @target = $game.days + 5
+    @target = 0
     @trained = false
     $game.barracks.queue == true ? @training = false : @training = true
     @battle_cry = $footman_confirm.sample

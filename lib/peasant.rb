@@ -2,7 +2,7 @@
 class Peasant < Unit
   attr_accessor :xp,:name, :greeting,:confirm, :target,:government_name,:trained,:training
   def initialize
-    @target = $game.days + 5
+    @target = 0
     @trained = false
     @name = "Peasant"
     @greeting = $peasant_greeting

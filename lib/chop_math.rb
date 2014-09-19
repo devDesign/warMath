@@ -10,8 +10,9 @@ class ChopMath
     puts "Peasants: '#{$player.peasants[0].confirm.sample}'"
     random_number_1 = random_generator
     random_number_2 = random_generator
-    correct_answer = random_number_1 - random_number_2
-    puts "#{random_number_1} - #{random_number_2} = "
+    randomnumbers = [random_number_1,random_number_2].sort
+    correct_answer = randomnumbers[1] - randomnumbers[0]
+    puts "#{randomnumbers[1]} - #{randomnumbers[0]} = "
     @answer = gets.chomp.to_i
     if @answer == correct_answer
       $grinding_lumber = true
@@ -23,6 +24,6 @@ class ChopMath
         $lost_peasant = true
       end
     end
-  $game.days += 1
+  $player.days += 1
   end
 end

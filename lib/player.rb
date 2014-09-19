@@ -1,6 +1,7 @@
 class Player
-  attr_accessor :gold, :food, :lumber, :buildings, :peasants, :training_footmen, :demand, :footmen, :farms, :party, :unbuilt_farms, :training_peasants
+  attr_accessor :days,:gold, :food, :lumber, :buildings, :peasants, :training_footmen, :demand, :footmen, :farms, :party, :unbuilt_farms, :training_peasants
   def initialize(peasants,footmen,farms)
+    @days = 0
     @gold= 500
     @lumber = 250
     @unbuilt_farms = []
@@ -19,7 +20,8 @@ class Player
 
   def build_queue
     @unbuilt_farms.each do |farm|
-      if farm.built == false && farm.target <= $game.days
+      farm.target = $player.days + 10
+      if farm.built == false && farm.target <= $player.days
         farm.built = true
         puts "Peasant : 'Jobs done.'"
         @farms.push(farm)
@@ -29,7 +31,8 @@ class Player
       end
     end
     @training_peasants.each do |peasant|
-      if peasant.target <= $game.days && peasant.training == true && peasant.trained == false
+      peasant.target = $player.days + 5
+      if peasant.target <= $player.days && peasant.training == true && peasant.trained == false
         puts "New peasant: " + peasant.greeting.sample
         peasant.trained = true
         $game.town_hall.queue = false
@@ -40,12 +43,12 @@ class Player
         puts "training peasant #{peasant.government_name}.... days left: #{peasant.days_left}"
       elsif $game.town_hall.queue == false && peasant.trained == false
         $game.town_hall.queue = true
-        peasant.target = $game.days + 5
+        peasant.target = $player.days + 5
         peasant.training = true
       end
     end
     @training_footmen.each do |footman|
-      if footman.target <= $game.days && footman.training == true && footman.trained == false
+      if footman.target <= $player.days && footman.training == true && footman.trained == false
         puts "new footman : 'Ready for action.'"
         footman.trained = true
         $game.barracks.queue = false
@@ -56,7 +59,7 @@ class Player
         puts "training footman #{footman.government_name}.... days left: #{footman.days_left}"
       elsif $game.barracks.queue == false && footman.trained == false
         $game.barracks.queue = true
-        footman.target = $game.days + 5
+        footman.target = $player.days + 5
         footman.training = true
       end
     end

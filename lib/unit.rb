@@ -28,7 +28,7 @@ class Unit
   end
 
   def days_left
-    @target - $game.days
+    @target - $player.days
   end
 
 

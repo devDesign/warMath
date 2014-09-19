@@ -1,10 +1,9 @@
 require_relative 'helper'
 class Game
-  attr_accessor :level, :barracks, :town_hall, :days, :announcer
+  attr_accessor :level, :barracks, :town_hall, :announcer
   def initialize
     @level = 0
     @turn = 0
-    @days = 0
     @town_hall = Town.new
     @barracks = Barracks.new
     @announcer = "build your army"
@@ -39,7 +38,7 @@ class Game
     $game.level += 1
     puts @announcer
     @announcer = ""
-    puts "Day:#{$game.days}"
+    puts "Day:#{$player.days}"
     puts "gold: #{$player.gold} lumber: #{$player.lumber}  food: #{$player.demand} /#{$player.food} peasants: #{$player.peasants.length}  footmen: #{$player.footmen.length}"
   end
 

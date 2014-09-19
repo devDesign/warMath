@@ -91,11 +91,12 @@ class QuestMath
     $player.footmen.each_with_index do |footman,index|
       if footman.is_dead?
         $game.announcer += " RIP #{footman.government_name}"
-        $game.days += 5
+        
         $player.footmen.delete_at(index)
         you_lose
       end
     end
+    $player.days += 5
     @battle_over = false
   end
 
@@ -107,12 +108,12 @@ class QuestMath
       end
     end
     $game.announcer = "you have won the battle"
-    lumber = rand(1..10)* @enemies.size
-    gold = rand(1..50) * @enemies.size
+    lumber = rand(1..10)* $player.party.size
+    gold = rand(1..50) * $player.party.size
     $game.announcer += " +#{gold} GOLD +#{lumber} LUMBER"
     $player.gold += gold
     $player.lumber += lumber
-    $game.days += 5
+    $player.days += 5
     @battle_over = false
   end
 

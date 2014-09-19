@@ -1,4 +1,5 @@
 
+
 require_relative 'helper'
 class MineMath
   def initialize
@@ -29,6 +30,6 @@ class MineMath
         $lost_peasant = true
       end
     end
-  $game.days += 1
+  $player.days += 1
   end
 end

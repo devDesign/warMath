@@ -1,13 +1,13 @@
 class Farm < Building
   attr_accessor :name, :days_left, :built, :days_left, :target
   def initialize
-    @target = $game.days + 10
+    @target = 0
     @built = false
     @name = "Farms"
   end
 
   def days_left
-    @target - $game.days
+    @target - $player.days
   end
 
 end
